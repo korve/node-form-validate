@@ -1,0 +1,13 @@
+{
+	"name": "node-form-validate",
+	"version": "0.0.1",
+	"private": true,
+	"scripts": {
+		"start": "node index.js"
+	},
+	"dependencies": {
+		"sprintf": "0.1.1",
+		"i18n": "",
+		"promise": ""
+	}
+}

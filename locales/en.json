@@ -1,0 +1,4 @@
+{
+	"length.tooShort": "The Field %s is too short (Min. %d characters required)",
+	"length.tooLong": "The Field %s is too long (Max. %d characters allowed)"
+}
