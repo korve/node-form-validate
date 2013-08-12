@@ -3,5 +3,8 @@
 	"length.tooLong": "The Field %s is too long (Max. %d characters allowed)",
 	
 	"alphaNumeric.isNotAlphaNumeric": "The Field %s may only contain alpha-numeric characters",
-	"alphaNumeric.isAlphaNumeric": "The Field %s may only contain non alpha-numeric characters"
+	"alphaNumeric.isAlphaNumeric": "The Field %s may only contain non alpha-numeric characters",
+
+	"alpha.isNotAlpha": "The Field %s may only contain alphabetical characters (a-z)",
+	"alpha.isAlpha": "The Field %s may only contain non alphabetical characters"
 }

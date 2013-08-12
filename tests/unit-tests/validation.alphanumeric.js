@@ -4,19 +4,49 @@
  * Time: 15:29
  */
 
-var TestServer = require('../lib/TestServer.js').TestServer,
-	TestUtils = require('../lib/TestUtils.js');
+var TestUtils = require('../lib/TestUtils.js');
 
 (function(){
 	
 	module.exports = {
+
+		testIsAlphaNumeric_EmptyValue: function(test){
+			var validations = {
+				alphaNumeric: true
+			};
+
+			TestUtils.validateTest('', validations, function(result, value){
+
+				console.log('Tested `testIsAlphaNumeric_EmptyValue` with value: ' + result.postData.input
+					+ '(' + result.postData.input.length + ')\n');
+
+				test.equals(result.errors.length, 0);
+				test.done();
+
+			});
+		},
+
+		testIsAlphaNumeric_UndefinedValue: function(test){
+			var validations = {
+				alphaNumeric: true
+			};
+
+			TestUtils.validateTest({}, validations, function(result, value){
+
+				console.log('Tested `testIsAlphaNumeric_UndefinedValue` with undefined value.\n');
+
+				test.equals(result.errors.length, 0);
+				test.done();
+
+			});
+		},
 		
 		testIsAlphaNumeric_AlphanumericValue: function(test){
 			var validations = {
 				alphaNumeric: true
 			};
 
-			TestUtils.validateTest('a1b2c3abcdefgi1234567', validations, function(result, value){
+			TestUtils.validateTest('abcdefghijklmopqrstuvxyz0123456789', validations, function(result, value){
 
 				console.log('Tested `testIsAlphaNumeric_AlphanumericValue` with value: ' + result.postData.input 
 					+ '(' + result.postData.input.length + ')\n');
@@ -32,7 +62,7 @@ var TestServer = require('../lib/TestServer.js').TestServer,
 				alphaNumeric: true
 			};
 
-			TestUtils.validateTest('a1b2c3abcdefgi1234567_{[]}', validations, function(result, value){
+			TestUtils.validateTest('abcdefghijklmopqrstuvxyz0123456789{[]}', validations, function(result, value){
 
 				console.log('Tested `testIsAlphaNumeric_NonAlphanumericValue` with value: ' + result.postData.input
 					+ '(' + result.postData.input.length + ')\n');
@@ -48,7 +78,7 @@ var TestServer = require('../lib/TestServer.js').TestServer,
 				alphaNumeric: false
 			};
 
-			TestUtils.validateTest('a1b2c3abcdefgi1234567', validations, function(result, value){
+			TestUtils.validateTest('abcdefghijklmopqrstuvxyz0123456789', validations, function(result, value){
 
 				console.log('Tested `testIsNotAlphanumeric_AlphanumericValue` with value: ' + result.postData.input
 					+ '(' + result.postData.input.length + ')\n');
