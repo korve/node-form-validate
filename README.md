@@ -142,13 +142,9 @@ Using `form-validation` in an express context is pretty straight-forward:
         	<td>
             	Only alphanumeric characters allowed:
                 <br>
-                ```
-                alphaNumeric: true
-                ```          
+                <code>alphaNumeric: true</code>
                 Only non-alphanumeric characters allowed:<br>
-                ```
-                alphaNumeric: false
-                ```
+                <code>alphaNumeric: false</code>
             </td>
         </tr>
     </tbody>
