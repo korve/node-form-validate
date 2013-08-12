@@ -9,13 +9,13 @@ A validation module for nodejs and express. It aims to give a convenient way to 
 ## Setting up `form-validate` with Express
 In order to use the `req.Validator` object and to access view helpers you have to register the form-validate middleware with express. 
 
-	var express = require('express'),
+    var express = require('express'),
                   validate = require('form-validate');
                   
     // ...Your express initialization logic...
     
     
-	app.use(express.logger('dev'));
+    app.use(express.logger('dev'));
 	app.use(express.bodyParser());
 	app.use(express.methodOverride());
     
@@ -115,6 +115,44 @@ Using `form-validation` in an express context is pretty straight-forward:
              */
         });
     });    
+
+## Validators
+
+<table>
+    <thead>
+      <tr>
+          <th>Validator</th>
+          <th>Example Configuration</th>
+      </tr>
+    </thead>
+    <tbody>
+    	<tr>
+        	<td>length</td>
+        	<td>
+                <code>
+                    length: {
+                        min: 5,
+                        max: 50
+                    }
+                </code>
+            </td>
+        </tr>
+        <tr>
+        	<td>alphaNumeric</td>
+        	<td>
+            	Only alphanumeric characters allowed:
+                <br>
+                ```
+                alphaNumeric: true
+                ```          
+                Only non-alphanumeric characters allowed:<br>
+                ```
+                alphaNumeric: false
+                ```
+            </td>
+        </tr>
+    </tbody>
+</table>
 
 ## Getting all Errors
 To get validation errors simply call the **asynchronous** `Validator.getValidationErrors(fn)` method and provide a callback which gets called when all validations have been completed. The callback gets provided with an array containing all errors which resulted from the validation process.

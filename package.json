@@ -1,7 +1,7 @@
 {
   "name": "form-validate",
   "version": "0.0.3",
-  "homepage": "https://github.com/korve/node-form-validation",
+  "homepage": "https://github.com/korve/node-form-validate",
   "author": "André Eckardt",
   "scripts": {
     "start": "node index.js"
@@ -13,10 +13,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/korve/node-form-validation.git"
+    "url": "git://github.com/korve/node-form-validate.git"
   },
   "directories": {
     "lib": "./lib"
   },
-  "main": "index.js"
+  "main": "index.js",
+  "license": "MIT"
 }

@@ -33,12 +33,12 @@ module.exports.TestServer = function(fn){
 	
 	this.server.listen(this.app.get('port'));
 	
-	this.close = function(){
+	this.close = function(fn){
 	
 		if( !this.server)
 			return;
 
-		this.server.close();
+		this.server.close(fn);
 	};
 
 	this.testPost = function(postData, onPost, onTest){

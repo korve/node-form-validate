@@ -34,9 +34,12 @@ module.exports = {
 
 					var result = JSON.parse(data);
 
-					fn(result, data, res);
-
-					this.close();
+					/**
+					 * Wait for instance to close to get to the next test.
+					 */
+					this.close(function(){
+						fn(result, data, res);
+					});
 				}.bind(this)
 			);
 		});
