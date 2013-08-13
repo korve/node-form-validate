@@ -58,7 +58,7 @@ module.exports.TestServer = function(fn){
 		
 		this.app.post('/form', function(req, res){
 
-			var result = onPost(req, res, function(result){
+			onPost(req, res, function(result){
 				res.write(JSON.stringify(result));
 				res.end();
 			});

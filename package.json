@@ -1,23 +1,21 @@
 {
-  "name": "form-validate",
-  "version": "0.0.3",
-  "homepage": "https://github.com/korve/node-form-validate",
-  "author": "André Eckardt",
-  "scripts": {
-    "start": "node index.js"
-  },
-  "dependencies": {
-    "sprintf": "0.1.1",
-    "i18n": "",
-    "promise": ""
-  },
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/korve/node-form-validate.git"
-  },
-  "directories": {
-    "lib": "./lib"
-  },
-  "main": "index.js",
-  "license": "MIT"
+	"name": "form-validate",
+	"version": "0.0.3",
+	"homepage": "https://github.com/korve/node-form-validate",
+	"author": "André Eckardt",
+	"license": "MIT",
+	"keywords": ["validation", "express", "form validation"],
+	"main": "index.js",
+	"dependencies": {
+		"sprintf": "0.1.1",
+		"i18n": "",
+		"promise": ""
+	},
+	"repository": {
+		"type": "git",
+		"url": "git://github.com/korve/node-form-validate.git"
+	},
+	"directories": {
+		"lib": "./lib"
+	}
 }
