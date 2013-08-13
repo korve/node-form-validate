@@ -9,35 +9,39 @@ A validation module for nodejs and express. It aims to give a convenient way to 
 ## Setting up `form-validate` with Express
 In order to use the `req.Validator` object and to access view helpers you have to register the form-validate middleware with express. 
 
-    var express = require('express'),
-                  validate = require('form-validate');
-                  
-    // ...Your express initialization logic...
+```js
+var express = require('express'),
+              validate = require('form-validate');
+              
+// ...Your express initialization logic...
+
+
+app.use(express.logger('dev'));
+app.use(express.bodyParser());
+app.use(express.methodOverride());
+
+// ...
+
+var validationConfig = {
+    //You can configure certain aspects of the validation module
+};
+app.use(validate(app, validationConfig));
     
-    
-    app.use(express.logger('dev'));
-	app.use(express.bodyParser());
-	app.use(express.methodOverride());
-    
-    // ...
-	
-	var validationConfig = {
-    	//You can configure certain aspects of the validation module
-	};
-	app.use(validate(app, validationConfig));
-        
-	app.use(app.router);
-	app.use(express.static(path.join(__dirname, 'public')));
-    
-    // ... Create http server
+app.use(app.router);
+app.use(express.static(path.join(__dirname, 'public')));
+
+// ... Create http server
+```
 
 ## Configuration
 You can configure the behaviour of the `form-validate` module by passing options when initializing the middleware:
 
-	var validationConfig = {
-    	//You can configure certain aspects of the validation module
-	};
-	app.use(validate(app, validationConfig));
+```js
+var options = {
+    //You can configure certain aspects of the validation module
+};
+app.use(validate(app, options));
+```
 ### Options
 
 <table>
@@ -54,19 +58,29 @@ You can configure the behaviour of the `form-validate` module by passing options
         	<td>i18n</td>
         	<td>object</td>
         	<td>
-        	    <code>        	    
-                i18n: {
-                    locales:['en', 'de'],
-                    defaultLocale: 'en',
-                    cookie: null,
-                    directory: path.normalize(__dirname + '/locales/'),
-                    updateFiles: true,
-                    indent: "\t",
-                    extension: '.json'
-                }
-        	    </code>
+               <pre><code>i18n: {
+    locales:['en', 'de'],
+    defaultLocale: 'en',
+    cookie: null,
+    directory: ...,
+    updateFiles: true,
+    indent: "\t",
+    extension: '.json'
+}</code></pre>
         	</td>
-        	<td>`form-validate` uses the [`i18n`](https://github.com/mashpie/i18n-node) module to translate the error messages. <br>You can configure the i18n module using this option.</td>
+        	<td><code>form-validate</code> uses the i18n (https://github.com/mashpie/i18n-node) module to translate the error messages. <br>You can configure the i18n module using this option.</td>
+        </tr>
+    	<tr>
+        	<td>escapeHTML</td>
+        	<td>boolean</td>
+        	<td><code>true</code></td>
+        	<td>If this is true every value will be html escaped when using <code>Validator.getValue()</code></td>
+        </tr>
+    	<tr>
+        	<td>stripTags</td>
+        	<td>boolean</td>
+        	<td><code>true</code></td>
+        	<td>If this is true every value will be stripped from html tags when using <code>Validator.getValue()</code></td>
         </tr>
     </tbody>
 </table>
@@ -75,62 +89,69 @@ You can configure the behaviour of the `form-validate` module by passing options
 
 Using `form-validation` in an express context is pretty straight-forward:
 
-    app.post('/register', function(res, res) {
-        /*
-         * You call req.Validator.validate for every field you want to validate. You
-         * can chain up the validate calls if you want (like in this example).
-         * You can optionally pass the field name as the 2nd parameter to
-         * place another name in the error message if you want to (for example to translate 
-         * fieldnames).
-         */
-        req.Validator.validate('displayName', i18n.t('user.displayName'), {
-                /*
-                 * Add as many validators as you want here. To see what 
-                 * validators are supported have a look in the form-validation/lib/rules/ folder
-                 */
-                length: {
-                    min: 2,
-                    max: 16
-                },
-                isUnique: function(field, fieldName, value, fn){
-                    /*
-                     * This is a custom validation callback. You have to
-                     * call fn() with an array containing the error 
-                     * message for this custom validation. If the array
-                     * is empty, the validation is considered a success.
-                     */
-                     var errors = [];
-                     if(value != 'unique')
-                     {
-                        errors.push('this field is not unique');
-                     }
-                     fn(errors); 
-                }
-            })
-            .validate('username', {
-                length: {
-                    min: 3,
-                    max: 256
-                }
-            })
-            .validate('password', {
-                length: {
-                    min: 4,
-                    max: 64
-                }
-            });
-        
-        /*
-         * Call the "getErrors" method to start the validation
-         */
-        req.Validator.getErrors(function(errors){
+```js
+app.post('/register', function(res, res) {
+    /*
+     * You call req.Validator.validate for every field you want to validate. You
+     * can chain up the validate calls if you want (like in this example).
+     * You can optionally pass the field name as the 2nd parameter to
+     * place another name in the error message if you want to (for example to translate 
+     * fieldnames).
+     */
+    req.Validator.validate('username', i18n.t('user.displayName'), {
             /*
-             * ... Your further rendering logic. e.g. res.render('view', { errors: errors });
+             * Add as many validators as you want here. To see what 
+             * validators are supported have a look in the form-validation/lib/rules/ folder
              */
+            length: {
+                min: 3,
+                max: 256
+            },
+            /*
+             * This validator name must be unique and not already used by form-validation (e.g. length, required etc.)
+             */
+            isUnique: function(field, fieldName, value, fn){
+                /*
+                 * This is a custom validation callback. You have to
+                 * call fn() with an array containing the error 
+                 * message for this custom validation. If the array
+                 * is empty, the validation is considered a success.
+                 */
+                 var errors = [];
+                 if(value != 'unique')
+                 {
+                    errors.push('this field is not unique');
+                 }
+                 fn(errors); 
+            }
+        })
+        .filter('username', {
+            trim: true
+        })
+        .validate('password', {
+            length: {
+                min: 4,
+                max: 64
+            }
+        })
+        .filter('password', {
+            stripTags: false,
+            escapeHTML: false
         });
-    });    
+    
+    /*
+     * Call the "getErrors" method to start the validation
+     */
+    req.Validator.getErrors(function(errors){
+        /*
+         * ... Your further rendering logic. e.g. res.render('view', { errors: errors });
+         */
+    });
+});    
+```
 
 ## Validators
+Validators can be added by using `req.Validator.validate`
 
 <table>
     <thead>
@@ -140,6 +161,14 @@ Using `form-validation` in an express context is pretty straight-forward:
       </tr>
     </thead>
     <tbody>
+    	<tr>
+        	<td>required</td>
+        	<td>
+                <code>
+                    required: true
+                </code>
+            </td>
+        </tr>
     	<tr>
         	<td>length</td>
         	<td>
@@ -161,6 +190,59 @@ Using `form-validation` in an express context is pretty straight-forward:
                 <code>alphaNumeric: false</code>
             </td>
         </tr>
+        <tr>
+        	<td>alpha</td>
+        	<td>
+            	Only alpha characters allowed:
+                <br>
+                <code>alpha: true</code><br>
+                Only non-alpha characters allowed:<br>
+                <code>alpha: false</code>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+
+## Filters
+Filters can be added by using `req.Validator.filter`
+
+<table>
+    <thead>
+      <tr>
+          <th>Filter</th>
+          <th>Example Configuration</th>
+      </tr>
+    </thead>
+    <tbody>
+    	<tr>
+        	<td>trim</td>
+        	<td>
+                <code>
+                    trim: true
+                </code>
+            </td>
+        </tr>
+    	<tr>
+        	<td>escapeHTML</td>
+        	<td>
+                Explicitly enable HTML escaping (enabled by default):
+                <br>
+                <code>escapeHTML: true</code><br>
+                Disable HTML escaping:<br>
+                <code>escapeHTML: false</code>
+            </td>
+        </tr>
+    	<tr>
+        	<td>stripTags</td>
+        	<td>
+                Explicitly enable stripping of HTML tags (enabled by default):
+                <br>
+                <code>stripTags: true</code><br>
+                Disable stripping of HTML tags:<br>
+                <code>stripTags: false</code>
+            </td>
+        </tr>
     </tbody>
 </table>
 
@@ -168,33 +250,45 @@ Using `form-validation` in an express context is pretty straight-forward:
 To get validation errors simply call the **asynchronous** `Validator.getErrors(fn)` method and provide a callback which gets called when all validations have been completed. The callback gets provided with an array containing all errors which resulted from the validation process.
 Example:
 
-	app.post('/register', function(res, res) {
-        
-        // ... Validation logic ... 
-        
+```js
+app.post('/register', function(res, res) {
+    
+    // ... Validation logic ... 
+    
+    /*
+     * Call the "getErrors" method to start the validation
+     */
+    req.Validator.getErrors(function(errors){
         /*
-         * Call the "getErrors" method to start the validation
+         * ... Your further rendering logic. e.g. res.render('view', { errors: errors });
          */
-        req.Validator.getErrors(function(errors){
-            /*
-             * ... Your further rendering logic. e.g. res.render('view', { errors: errors });
-             */
-        });
-    });    
+    });
+});    
+```
 
 ## View Helpers
-The local variable `Validator` is available in all express views. **Warning:** In order to these view helpers to work `Validator.getErrors()` has got to be called before the rendering took place.
+#### **Warning:** In order to these view helpers to work `Validator.getErrors()` has got to be called before the rendering took place.
+The local variable `Validator` is available in all express views.
 
-	/**
-     * Returns all errors for this field as an array
-     */
-    Validator.getFieldErrors(fieldName)
-	
-    /**
-     * Returns true if this field has any error. You can use this to give the
-     * field a certain class if an error occured
-     */
-    Validator.hasErrors(fieldName)
+```js
+
+/**
+ * Returns the sanitized value of <code>fieldName</code> which ran through all
+ * filters (if any)
+ */
+Validator.getValue(fieldName)
+
+/**
+ * Returns all errors for this field as an array
+ */
+Validator.getFieldErrors(fieldName)
+
+/**
+ * Returns true if this field has any error. You can use this to give the
+ * field a certain class if an error occured
+ */
+Validator.hasErrors(fieldName)
+```
 
 ## The MIT License
 
