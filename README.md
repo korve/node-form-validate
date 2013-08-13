@@ -3,7 +3,7 @@
 A validation module for nodejs and express. It aims to give a convenient way to validate incoming POST data (which is the most common) and be as flexible as possible. This module is in development - feel free to contribute if you feel like it :)
 
 ## Installation
-    npm install form-validation
+    npm install form-validate
     
  
 ## Setting up `form-validate` with Express
