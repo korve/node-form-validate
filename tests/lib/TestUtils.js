@@ -8,8 +8,13 @@ var TestServer = require('./TestServer.js').TestServer;
 
 module.exports = {
 	
-	validateTest: function(postData, options, fn){
+	validateTest: function(postData, validations, filters, fn){
 
+		if(typeof fn === 'undefined')
+		{
+			fn = filters;
+		}
+		
 		new TestServer(function(){
 
 			if(typeof postData !== 'object')
@@ -21,12 +26,14 @@ module.exports = {
 			
 			this.testPost(postData,
 				function request(req, res, fn){
-					req.Validator.validate('input', options);
+					req.Validator.validate('input', validations);
+					req.Validator.filter('input', filters);
 
-					req.Validator.getValidationErrors(function(errors){
+					req.Validator.getErrors(function(errors){
 						fn({
 							errors: errors,
-							postData: req.body
+							postData: req.body,
+							value: req.Validator.getValue('input')
 						});
 					});
 				},

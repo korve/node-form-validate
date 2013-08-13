@@ -45,6 +45,7 @@ You can configure the behaviour of the `form-validate` module by passing options
       <tr>
           <th>Options</th>
           <th>Type</th>
+          <th>Default</th>
           <th>Description</th>
       </tr>
     </thead>
@@ -52,6 +53,19 @@ You can configure the behaviour of the `form-validate` module by passing options
     	<tr>
         	<td>i18n</td>
         	<td>object</td>
+        	<td>
+        	    <code>        	    
+                i18n: {
+                    locales:['en', 'de'],
+                    defaultLocale: 'en',
+                    cookie: null,
+                    directory: path.normalize(__dirname + '/locales/'),
+                    updateFiles: true,
+                    indent: "\t",
+                    extension: '.json'
+                }
+        	    </code>
+        	</td>
         	<td>`form-validate` uses the [`i18n`](https://github.com/mashpie/i18n-node) module to translate the error messages. <br>You can configure the i18n module using this option.</td>
         </tr>
     </tbody>
@@ -107,9 +121,9 @@ Using `form-validation` in an express context is pretty straight-forward:
             });
         
         /*
-         * Call the "getValidationErrors" method to start the validation
+         * Call the "getErrors" method to start the validation
          */
-        req.Validator.getValidationErrors(function(errors){
+        req.Validator.getErrors(function(errors){
             /*
              * ... Your further rendering logic. e.g. res.render('view', { errors: errors });
              */
@@ -151,7 +165,7 @@ Using `form-validation` in an express context is pretty straight-forward:
 </table>
 
 ## Getting all Errors
-To get validation errors simply call the **asynchronous** `Validator.getValidationErrors(fn)` method and provide a callback which gets called when all validations have been completed. The callback gets provided with an array containing all errors which resulted from the validation process.
+To get validation errors simply call the **asynchronous** `Validator.getErrors(fn)` method and provide a callback which gets called when all validations have been completed. The callback gets provided with an array containing all errors which resulted from the validation process.
 Example:
 
 	app.post('/register', function(res, res) {
@@ -159,9 +173,9 @@ Example:
         // ... Validation logic ... 
         
         /*
-         * Call the "getValidationErrors" method to start the validation
+         * Call the "getErrors" method to start the validation
          */
-        req.Validator.getValidationErrors(function(errors){
+        req.Validator.getErrors(function(errors){
             /*
              * ... Your further rendering logic. e.g. res.render('view', { errors: errors });
              */
@@ -169,20 +183,18 @@ Example:
     });    
 
 ## View Helpers
-The local variable `Validator` is available in all express views. **Warning:** In order to these view helpers to work `Validator.getValidationErrors()` has got to be called before the rendering took place.
+The local variable `Validator` is available in all express views. **Warning:** In order to these view helpers to work `Validator.getErrors()` has got to be called before the rendering took place.
 
 	/**
      * Returns all errors for this field as an array
      */
-    Validator.getFieldValidationErrors(fieldName)
-
-_ _
+    Validator.getFieldErrors(fieldName)
 	
     /**
      * Returns true if this field has any error. You can use this to give the
      * field a certain class if an error occured
      */
-    Validator.hasValidationErrors(fieldName)
+    Validator.hasErrors(fieldName)
 
 ## The MIT License
 

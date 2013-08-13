@@ -6,5 +6,7 @@
 	"alphaNumeric.isAlphaNumeric": "The Field %s may only contain non alpha-numeric characters",
 
 	"alpha.isNotAlpha": "The Field %s may only contain alphabetical characters (a-z)",
-	"alpha.isAlpha": "The Field %s may only contain non alphabetical characters"
+	"alpha.isAlpha": "The Field %s may only contain non alphabetical characters",
+
+	"required.missing": "The Field %s is required"
 }
