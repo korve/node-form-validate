@@ -13,7 +13,7 @@ module.exports = {
 			required: true
 		};
 
-		TestUtils.validateTest({}, validations, function(result, value){
+		TestUtils.validateTest({}, validations).then(function(result, value){
 
 			console.log('Tested `testRequired_ValueUndefined` with value: undefined\n');
 			
@@ -28,7 +28,7 @@ module.exports = {
 			required: true
 		};
 
-		TestUtils.validateTest(TestUtils.generateString(50), validations, function(result, value){
+		TestUtils.validateTest(TestUtils.generateString(50), validations).then(function(result, value){
 
 			console.log('Tested `testRequired_ValueDefined` with value: ' + result.postData.input
 				+ '(' + result.postData.input.length + ')\n');
@@ -44,7 +44,7 @@ module.exports = {
 			required: false
 		};
 
-		TestUtils.validateTest({}, validations, function(result, value){
+		TestUtils.validateTest({}, validations).then(function(result, value){
 
 			console.log('Tested `testNotRequired_ValueUndefined` with value: undefined\n');
 
@@ -59,7 +59,7 @@ module.exports = {
 			required: false
 		};
 
-		TestUtils.validateTest(TestUtils.generateString(50), validations, function(result, value){
+		TestUtils.validateTest(TestUtils.generateString(50), validations).then(function(result, value){
 
 			console.log('Tested `testRequired_ValueDefined` with value: ' + result.postData.input
 				+ '(' + result.postData.input.length + ')\n');

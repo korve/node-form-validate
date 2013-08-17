@@ -14,8 +14,8 @@ var TestUtils = require('../lib/TestUtils.js');
 			var validations = {
 				alpha: true
 			};
-
-			TestUtils.validateTest('', validations, function(result, value){
+			
+			TestUtils.validateTest('', validations).then(function(result, value){
 
 				console.log('Tested `testIsAlpha_EmptyValue` with value: ' + result.postData.input
 					+ '(' + result.postData.input.length + ')\n');
@@ -31,7 +31,7 @@ var TestUtils = require('../lib/TestUtils.js');
 				alpha: true
 			};
 
-			TestUtils.validateTest({}, validations, function(result, value){
+			TestUtils.validateTest({}, validations).then(function(result, value){
 
 				console.log('Tested `testIsAlpha_UndefinedValue` with undefined value.\n');
 
@@ -46,7 +46,7 @@ var TestUtils = require('../lib/TestUtils.js');
 				alpha: true
 			};
 
-			TestUtils.validateTest('abcdefghijklmopqrstuvxyz', validations, function(result, value){
+			TestUtils.validateTest('abcdefghijklmopqrstuvxyz', validations).then(function(result, value){
 
 				console.log('Tested `testIsAlpha_AlphaValue` with value: ' + result.postData.input 
 					+ '(' + result.postData.input.length + ')\n');
@@ -62,25 +62,9 @@ var TestUtils = require('../lib/TestUtils.js');
 				alpha: true
 			};
 
-			TestUtils.validateTest('0123456789{[]}', validations, function(result, value){
+			TestUtils.validateTest('0123456789{[]}', validations).then(function(result, value){
 
 				console.log('Tested `testIsAlpha_NonAlphaValue` with value: ' + result.postData.input
-					+ '(' + result.postData.input.length + ')\n');
-
-				test.equals(result.errors.length, 1);
-				test.done();
-
-			});
-		},
-
-		testIsNotAlpha_AlphaValue: function(test){
-			var validations = {
-				alpha: false
-			};
-
-			TestUtils.validateTest('abcdefghijklmopqrstuvxyz', validations, function(result, value){
-
-				console.log('Tested `testIsNotAlpha_AlphaValue` with value: ' + result.postData.input
 					+ '(' + result.postData.input.length + ')\n');
 
 				test.equals(result.errors.length, 1);
@@ -94,7 +78,7 @@ var TestUtils = require('../lib/TestUtils.js');
 				alpha: false
 			};
 
-			TestUtils.validateTest('0123456789{[]}', validations, function(result, value){
+			TestUtils.validateTest('0123456789{[]}', validations).then(function(result, value){
 
 				console.log('Tested `testIsNotAlpha_NonAlphaValue` with value: ' + result.postData.input
 					+ '(' + result.postData.input.length + ')\n');

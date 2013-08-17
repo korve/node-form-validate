@@ -15,7 +15,7 @@ var TestUtils = require('../lib/TestUtils.js');
 				alphaNumeric: true
 			};
 
-			TestUtils.validateTest('', validations, function(result, value){
+			TestUtils.validateTest('', validations).then(function(result, value){
 
 				console.log('Tested `testIsAlphaNumeric_EmptyValue` with value: ' + result.postData.input
 					+ '(' + result.postData.input.length + ')\n');
@@ -31,7 +31,7 @@ var TestUtils = require('../lib/TestUtils.js');
 				alphaNumeric: true
 			};
 
-			TestUtils.validateTest({}, validations, function(result, value){
+			TestUtils.validateTest({}, validations).then(function(result, value){
 
 				console.log('Tested `testIsAlphaNumeric_UndefinedValue` with undefined value.\n');
 
@@ -46,7 +46,7 @@ var TestUtils = require('../lib/TestUtils.js');
 				alphaNumeric: true
 			};
 
-			TestUtils.validateTest('abcdefghijklmopqrstuvxyz0123456789', validations, function(result, value){
+			TestUtils.validateTest('abcdefghijklmopqrstuvxyz0123456789', validations).then(function(result, value){
 
 				console.log('Tested `testIsAlphaNumeric_AlphanumericValue` with value: ' + result.postData.input 
 					+ '(' + result.postData.input.length + ')\n');
@@ -62,7 +62,7 @@ var TestUtils = require('../lib/TestUtils.js');
 				alphaNumeric: true
 			};
 
-			TestUtils.validateTest('abcdefghijklmopqrstuvxyz0123456789{[]}', validations, function(result, value){
+			TestUtils.validateTest('abcdefghijklmopqrstuvxyz0123456789{[]}', validations).then(function(result, value){
 
 				console.log('Tested `testIsAlphaNumeric_NonAlphanumericValue` with value: ' + result.postData.input
 					+ '(' + result.postData.input.length + ')\n');
@@ -71,22 +71,6 @@ var TestUtils = require('../lib/TestUtils.js');
 				test.done();
 
 			});
-		},
-
-		testIsNotAlphanumeric_AlphanumericValue: function(test){
-			var validations = {
-				alphaNumeric: false
-			};
-
-			TestUtils.validateTest('abcdefghijklmopqrstuvxyz0123456789', validations, function(result, value){
-
-				console.log('Tested `testIsNotAlphanumeric_AlphanumericValue` with value: ' + result.postData.input
-					+ '(' + result.postData.input.length + ')\n');
-
-				test.equals(result.errors.length, 1);
-				test.done();
-
-			});
-		},
+		}
 	};
 })();

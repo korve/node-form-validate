@@ -21,7 +21,7 @@ module.exports = {
 			
 		};
 
-		TestUtils.validateTest(TestUtils.generateString(50), validations, filters, function(result, value){
+		TestUtils.validateTest(TestUtils.generateString(50), validations, filters).then(function(result, value){
 
 			console.log('Tested `testValidation_NoValidations_NoFilters` with value: ' + result.postData.input
 				+ '(' + result.postData.input.length + ')\n');
@@ -40,7 +40,7 @@ module.exports = {
 		var filters = {
 		};
 
-		TestUtils.validateTest(TestUtils.generateString(50), validations, filters, function(result, value){
+		TestUtils.validateTest(TestUtils.generateString(50), validations, filters).then(function(result, value){
 
 			console.log('Tested `testValidation_NoValidations_NoFilters` with value: ' + result.postData.input
 				+ '(' + result.postData.input.length + ')\n');
@@ -59,7 +59,7 @@ module.exports = {
 		var filters = {
 		};
 
-		TestUtils.validateTest({}, validations, filters, function(result, value){
+		TestUtils.validateTest({}, validations, filters).then(function(result, value){
 
 			console.log('Tested `testValidation_OneValidation_NoFilters_InvalidInput` with value: undefined\n');
 
@@ -80,7 +80,7 @@ module.exports = {
 			trim: true
 		};
 
-		TestUtils.validateTest(data, validations, filters, function(result, value){
+		TestUtils.validateTest(data, validations, filters).then(function(result, value){
 
 			console.log('Tested `testValidation_OneValidation_OneFilter` with value: ' + result.postData.input
 				+ '(' + result.postData.input.length + ')\n');
@@ -106,7 +106,7 @@ module.exports = {
 			trim: true
 		};
 
-		TestUtils.validateTest(data, validations, filters, function(result, value){
+		TestUtils.validateTest(data, validations, filters).then(function(result, value){
 
 			console.log('Tested `testValidation_OneValidation_OneFilter_InvalidInput` with value: ' + result.postData.input
 				+ '(' + result.postData.input.length + ')\n');
@@ -128,7 +128,7 @@ module.exports = {
 			trim: true
 		};
 
-		TestUtils.validateTest(data, validations, filters, function(result, value){
+		TestUtils.validateTest(data, validations, filters).then(function(result, value){
 
 			console.log('Tested `testValidation_NoValidations_OneFilter` with value: ' + result.postData.input
 				+ '(' + result.postData.input.length + ')\n');
@@ -155,7 +155,7 @@ module.exports = {
 		var filters = {
 		};
 
-		TestUtils.validateTest(data, validations, filters, function(result, value){
+		TestUtils.validateTest(data, validations, filters).then(function(result, value){
 
 			console.log('Tested `testValidation_MultipleValidations_NoFilters` with value: ' + result.postData.input
 				+ '(' + result.postData.input.length + ')\n');
@@ -182,7 +182,7 @@ module.exports = {
 		var filters = {
 		};
 
-		TestUtils.validateTest(data, validations, filters, function(result, value){
+		TestUtils.validateTest(data, validations, filters).then(function(result, value){
 
 			console.log('Tested `testValidation_MultipleValidations_NoFilters_InvalidInput` with value: ' + result.postData.input
 				+ '(' + result.postData.input.length + ')\n');

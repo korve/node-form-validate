@@ -4,16 +4,14 @@
  * Time: 18:46
  */
 
-var TestServer = require('./TestServer.js').TestServer;
+var Q = require('q'),
+	TestServer = require('./TestServer.js').TestServer;
 
 module.exports = {
 	
-	validateTest: function(postData, validations, filters, fn){
+	validateTest: function(postData, validations, filters){
 
-		if(typeof fn === 'undefined')
-		{
-			fn = filters;
-		}
+		var deferred = Q.defer();
 		
 		new TestServer(function(){
 
@@ -44,13 +42,15 @@ module.exports = {
 					/**
 					 * Wait for instance to close to get to the next test.
 					 */
+
 					this.close(function(){
-						fn(result, data, res);
+						deferred.resolve(result, data, res);						
 					});
 				}.bind(this)
 			);
 		});
 
+		return deferred.promise;
 	},
 	
 	generateString: function(length){

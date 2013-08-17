@@ -18,7 +18,7 @@ var TestServer = require('../lib/TestServer.js').TestServer,
 				}
 			};
 
-			TestUtils.validateTest(TestUtils.generateString(49), validations, function(result, value){
+			TestUtils.validateTest(TestUtils.generateString(49), validations).then(function(result, value){
 
 				console.log('Tested `testValueTooShort` with value: ' + result.postData.input 
 					+ '(' + result.postData.input.length + ', ' 
@@ -38,7 +38,7 @@ var TestServer = require('../lib/TestServer.js').TestServer,
 				}
 			};
 
-			TestUtils.validateTest(TestUtils.generateString(50), validations, function(result, value){
+			TestUtils.validateTest(TestUtils.generateString(50), validations).then(function(result, value){
 
 				console.log('Tested `testValueExactLength` with value: ' + result.postData.input
 					+ '(' + result.postData.input.length + ', '
@@ -57,7 +57,7 @@ var TestServer = require('../lib/TestServer.js').TestServer,
 				}
 			};
 
-			TestUtils.validateTest(TestUtils.generateString(51), validations, function(result){
+			TestUtils.validateTest(TestUtils.generateString(51), validations).then(function(result){
 
 				test.equals(result.errors.length, 1);
 				test.done();
@@ -76,7 +76,7 @@ var TestServer = require('../lib/TestServer.js').TestServer,
 				}
 			};
 
-			TestUtils.validateTest('', validations, function(result){
+			TestUtils.validateTest('', validations).then(function(result){
 				
 				test.ok(result.errors.length === 1);
 				test.done();
@@ -96,7 +96,7 @@ var TestServer = require('../lib/TestServer.js').TestServer,
 				}
 			};
 
-			TestUtils.validateTest({}, validations, function(result){
+			TestUtils.validateTest({}, validations).then(function(result, value){
 
 				test.ok(result.errors.length === 0);
 				test.done();

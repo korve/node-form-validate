@@ -17,7 +17,7 @@ module.exports = {
 			trim: true
 		};
 
-		TestUtils.validateTest('', validations, function(result, value){
+		TestUtils.validateTest('', validations).then(function(result, value){
 
 			console.log('Tested `testIsAlpha_EmptyValue` with value: ' + result.postData.input
 				+ '(' + result.postData.input.length + ')\n');
