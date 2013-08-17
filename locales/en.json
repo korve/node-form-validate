@@ -1,15 +1,9 @@
 {
 	"length.tooShort": "The Field %s is too short (Min. %d characters required)",
 	"length.tooLong": "The Field %s is too long (Max. %d characters allowed)",
-	
 	"alphaNumeric.isNotAlphaNumeric": "The Field %s may only contain alpha-numeric characters",
-	"alphaNumeric.isAlphaNumeric": "The Field %s may only contain non alpha-numeric characters",
-
 	"numeric.isNotNumeric": "The Field %s may only contain numbers",
-	"numeric.isNumeric": "The Field %s may only everything but numbers",
-
 	"alpha.isNotAlpha": "The Field %s may only contain alphabetical characters (a-z)",
-	"alpha.isAlpha": "The Field %s may only contain non alphabetical characters",
-
-	"required.missing": "The Field %s is required"
+	"required.missing": "The Field %s is required",
+	"integer.isNoInteger": "The Field %s may only contain integers"
 }
