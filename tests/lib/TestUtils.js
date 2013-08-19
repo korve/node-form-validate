@@ -18,7 +18,7 @@ module.exports = {
 			if(typeof postData !== 'object')
 			{
 				postData = {
-					input: postData
+					input: encodeURIComponent(postData)
 				};
 			}
 			
@@ -33,7 +33,7 @@ module.exports = {
 							postData: req.body,
 							value: req.Validator.getValue('input')
 						});
-					});
+					}, true);
 				},
 				function testData(res, data){
 

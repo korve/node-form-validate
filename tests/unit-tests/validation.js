@@ -18,7 +18,6 @@ module.exports = {
 		};
 		
 		var filters = {
-			
 		};
 
 		TestUtils.validateTest(TestUtils.generateString(50), validations, filters).then(function(result, value){

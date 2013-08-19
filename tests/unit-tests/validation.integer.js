@@ -90,7 +90,7 @@ var i18n = require('i18n'),
 
 		testIsInteger_NegativeAllowed: function(test){
 			var validations = {
-				numeric: {
+				integer: {
 					allowNegative: true
 				}
 			};
@@ -100,23 +100,15 @@ var i18n = require('i18n'),
 			TestUtils.validateTest('1234567890', validations)
 				.then(function(result){
 					errors.push.apply(errors, result.errors);
-					return TestUtils.validateTest('123456.7890', validations);
+					return TestUtils.validateTest('0', validations);
 				})
 				.then(function(result){
 					errors.push.apply(errors, result.errors);
-					return TestUtils.validateTest('.1234567890', validations);
+					return TestUtils.validateTest('-1234567890', validations);
 				})
 				.then(function(result){
 					errors.push.apply(errors, result.errors);
-					return TestUtils.validateTest('-1234567890', validations)
-				})
-				.then(function(result){
-					errors.push.apply(errors, result.errors);
-					return TestUtils.validateTest('-123456.7890', validations);
-				})
-				.then(function(result){
-					errors.push.apply(errors, result.errors);
-					return TestUtils.validateTest('-.1234567890', validations);
+					return TestUtils.validateTest('-0', validations);
 				})
 				.then(function(result){
 					errors.push.apply(errors, result.errors);
