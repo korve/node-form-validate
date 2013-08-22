@@ -4,7 +4,7 @@
  * Time: 15:29
  */
 
-var TestServer = require('../lib/TestServer.js').TestServer,
+var i18n = require('i18n'),
 	TestUtils = require('../lib/TestUtils.js');
 
 (function(){
@@ -78,7 +78,7 @@ var TestServer = require('../lib/TestServer.js').TestServer,
 
 			TestUtils.validateTest('', validations).then(function(result){
 				
-				test.ok(result.errors.length === 1);
+				test.equals(result.errors[0], i18n.__('length.tooShort', 'input', validations.length.min));
 				test.done();
 
 			});
@@ -98,7 +98,7 @@ var TestServer = require('../lib/TestServer.js').TestServer,
 
 			TestUtils.validateTest({}, validations).then(function(result, value){
 
-				test.ok(result.errors.length === 0);
+				test.equals(result.errors.length, 0);
 				test.done();
 
 			});

@@ -5,5 +5,6 @@
 	"numeric.isNotNumeric": "The Field %s may only contain numbers",
 	"alpha.isNotAlpha": "The Field %s may only contain alphabetical characters (a-z)",
 	"required.missing": "The Field %s is required",
-	"integer.isNoInteger": "The Field %s may only contain integers"
+	"integer.isNoInteger": "The Field %s may only contain integers",
+	"decimal.isNoDecimal": "The Field %s may only contain decimals"
 }
