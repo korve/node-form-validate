@@ -181,15 +181,15 @@ Validators can be added by using `req.Validator.validate`
             </td>
         </tr>
         <tr>
-        	<td>alphaNumeric</td>
-        	<td>
-                <code>alphaNumeric: true</code><br>
-            </td>
-        </tr>
-        <tr>
         	<td>alpha</td>
         	<td>
                 <code>alpha: true</code><br>
+            </td>
+        </tr>
+        <tr>
+        	<td>alphaNumeric</td>
+        	<td>
+                <code>alphaNumeric: true</code><br>
             </td>
         </tr>
         <tr>
@@ -204,6 +204,13 @@ Validators can be added by using `req.Validator.validate`
         	<td>
                 <code>integer: true</code><br>
                 <code>integer: { allowNegative: true } // also allow negative values</code>
+            </td>
+        </tr>
+        <tr>
+        	<td>decimal</td>
+        	<td>
+                <code>decimal: true</code><br>
+                <code>decimal: { allowNegative: true } // also allow negative values</code>
             </td>
         </tr>
     </tbody>
