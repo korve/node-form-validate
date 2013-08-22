@@ -303,6 +303,20 @@ Validator.getFieldErrors(fieldName)
 Validator.hasErrors(fieldName)
 ```
 
+##### Jade Usage example
+```jade
+
+form(action='/login', method='post')
+    div(class=Validator.hasError('username') ? 'has-error' : '')
+        label(for='username')=Username
+        input#username(type='text', name='username', value=Validator.getValue('username'))
+        
+    div(class=Validator.hasError('password') ? 'has-error' : '')
+        label(for='password')=Password
+        input#password(type='text', name='password', value=Validator.getValue('password'))
+
+```
+
 ## The MIT License
 
 Copyright (c) 2013 André Eckardt (http://github.com/korve, http://mindpress.de)
