@@ -310,7 +310,7 @@ Validator.hasErrors(fieldName)
 ```
 
 ##### Jade Usage example
-```jade
+```
 
 form(action='/login', method='post')
     div(class=Validator.hasError('username') ? 'has-error' : '')
