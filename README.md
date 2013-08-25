@@ -213,6 +213,12 @@ Validators can be added by using `req.Validator.validate`
                 <code>decimal: { allowNegative: true } // also allow negative values</code>
             </td>
         </tr>
+        <tr>
+        	<td>between</td>
+        	<td>
+                <code>between: { min: 10, max: 15 }</code>
+            </td>
+        </tr>
     </tbody>
 </table>
 

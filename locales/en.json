@@ -6,5 +6,9 @@
 	"alpha.isNotAlpha": "The Field %s may only contain alphabetical characters (a-z)",
 	"required.missing": "The Field %s is required",
 	"integer.isNoInteger": "The Field %s may only contain integers",
-	"decimal.isNoDecimal": "The Field %s may only contain decimals"
+	"decimal.isNoDecimal": "The Field %s may only contain decimals",
+	"between.isNotNumeric": "The Field %s may only contain numbers",
+	"between.notIntRange": "The Field %s may only contain numbers from %d-%d",
+	"between.tooBig": "The Field %s may only contain numbers below %d",
+	"between.notInRange": "between.notInRange"
 }
