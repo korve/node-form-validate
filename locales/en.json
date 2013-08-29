@@ -8,7 +8,7 @@
 	"integer.isNoInteger": "The Field %s may only contain integers",
 	"decimal.isNoDecimal": "The Field %s may only contain decimals",
 	"between.isNotNumeric": "The Field %s may only contain numbers",
-	"between.notIntRange": "The Field %s may only contain numbers from %d-%d",
+	"between.notInRange": "The Field %s may only contain numbers from %d-%d",
 	"between.tooBig": "The Field %s may only contain numbers below %d",
-	"between.notInRange": "between.notInRange"
+	"email.invalid": "The field %s requires a valid Email address"
 }
