@@ -222,7 +222,7 @@ Validators can be added by using `req.Validator.validate`
         <tr>
         	<td>email</td>
         	<td>
-                <code>email: true</code>
+                <code>email: true</code><br>
                 This method of testing is not recommended. You should allow all Email addresses and validate it by 
                 sending an email to the given address.
             </td>
@@ -248,6 +248,41 @@ Filters can be added by using `req.Validator.filter`
                 <code>
                     trim: true
                 </code>
+            </td>
+        </tr>
+    	<tr>
+        	<td>toInt</td>
+        	<td>
+                <code>
+                    toInt: true
+                </code>
+            </td>
+        </tr>
+    	<tr>
+        	<td>toFloat</td>
+        	<td>
+                <code>
+                    toFloat: true
+                </code>
+            </td>
+        </tr>
+    	<tr>
+        	<td>toBoolean</td>
+        	<td>
+                <code>
+                    toBoolean: true
+                </code>
+            </td>
+        </tr>
+    	<tr>
+        	<td>hash</td>
+        	<td>
+                <pre><code>i18n: {
+hash: {
+    algorithm: 'sha1', //See: http://nodejs.org/api/crypto.html#crypto_crypto_gethashes
+    outputEncoding: 'base64' // 'hex', 'binary' or 'base64'
+}
+                </code></pre>
             </td>
         </tr>
     	<tr>
