@@ -151,7 +151,8 @@ app.post('/register', function(res, res) {
 ```
 
 ## Validators
-Validators can be added by using `req.Validator.validate`
+Validators are the core functionality of node-form-validate. Input data can be validated to see if they meet certain
+criteria. If they dont match, an error message will be generated. They can be added by using `req.Validator.validate()`
 
 <table>
     <thead>
@@ -232,7 +233,8 @@ Validators can be added by using `req.Validator.validate`
 
 
 ## Filters
-Filters can be added by using `req.Validator.filter`
+Filters are applied before the input data is validated. Filters can parse the incoming data and prepare
+it for validation or database input. They can be added by using `req.Validator.filter()`
 
 <table>
     <thead>
@@ -330,7 +332,7 @@ app.post('/register', function(res, res) {
 ```
 
 ## View Helpers
-#### **Warning:** In order to these view helpers to work `Validator.getErrors()` has got to be called before the rendering took place.
+#### **Warning:** In order to these view helpers to work `Validator.getErrors()` has to be called before the rendering took place.
 The local variable `Validator` is available in all express views.
 
 ```js
