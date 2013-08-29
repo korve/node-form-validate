@@ -219,6 +219,14 @@ Validators can be added by using `req.Validator.validate`
                 <code>between: { min: 10, max: 15 }</code>
             </td>
         </tr>
+        <tr>
+        	<td>email</td>
+        	<td>
+                <code>email: true</code>
+                This method of testing is not recommended. You should allow all Email addresses and validate it by 
+                sending an email to the given address.
+            </td>
+        </tr>
     </tbody>
 </table>
 
