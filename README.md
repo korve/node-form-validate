@@ -279,10 +279,11 @@ Filters can be added by using `req.Validator.filter`
         	<td>
                 <pre><code>i18n: {
 hash: {
-    algorithm: 'sha1', //See: http://nodejs.org/api/crypto.html#crypto_crypto_gethashes
+    algorithm: 'sha1',
     outputEncoding: 'base64' // 'hex', 'binary' or 'base64'
 }
                 </code></pre>
+                To get a list of all supported hash algorithms on your installation, see: http://nodejs.org/api/crypto.html#crypto_crypto_gethashes
             </td>
         </tr>
     	<tr>
